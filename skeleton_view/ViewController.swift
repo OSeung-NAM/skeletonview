@@ -23,6 +23,8 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isSkeletonable = true
+        tableView.tableHeaderView = nil
+        tableView.sectionHeaderHeight = 0.1
         let gradient = SkeletonGradient(baseColor: UIColor.clouds)
         let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .topLeftBottomRight)
         tableView.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation)
@@ -81,6 +83,13 @@ extension ViewController: SkeletonTableViewDataSource {
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return "TestTableViewCell"
 
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        UIView()
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        0.1
     }
 }
 
